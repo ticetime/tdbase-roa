@@ -1,3 +1,7 @@
+import grails.plugins.springsecurity.SecurityConfigType
+import org.lilie.services.eliot.tice.utils.EliotApplicationEnum
+import org.lilie.services.eliot.tice.utils.UrlServeurResolutionEnum
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -83,6 +87,10 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+grails.plugins.springsecurity.dao.reflectionSaltSourceProperty = 'username'
+grails.plugins.springsecurity.securityConfigType = SecurityConfigType.Annotation
+grails.plugins.springsecurity.errors.login.fail = "errors.login.fail"
+
 environments {
     development {
         grails.logging.jul.usebridge = true
@@ -112,4 +120,49 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+}
+
+environments {
+  development {
+    eliot.eliotApplicationEnum = EliotApplicationEnum.NOT_AN_APPLICATION
+    eliot.requestHeaderPorteur = "ENT_PORTEUR"
+    eliot.not_an_application.nomApplication = "TicePlugin"
+    eliot.urlResolution.mode = UrlServeurResolutionEnum.ANNUAIRE_PORTEUR.name()
+    //eliot.urlResolution.mode = UrlServeurResolutionEnum.CONFIGURATION.name()
+    //eliot.not_an_application.urlServeur = "http//localhost:8080"
+    eliot.fichiers.racine = "/tmp"
+
+    eliot.interfacage.strongCheck = false
+    // rest client config for textes
+    eliot.webservices.rest.client.textes.user = "api"
+    eliot.webservices.rest.client.textes.password = "api"
+    eliot.webservices.rest.client.textes.urlServer = "http://localhost:8090"
+    eliot.webservices.rest.client.textes.uriPrefix = "/eliot-test-webservices/echanges/v2"
+    // rest client config for notes
+    eliot.webservices.rest.client.notes.user = "eliot-tdbase"
+    eliot.webservices.rest.client.notes.password = "eliot-tdbase"
+    eliot.webservices.rest.client.notes.urlServer = "http://localhost:8090"
+    eliot.webservices.rest.client.notes.uriPrefix = "/eliot-test-webservices/api-rest/v2"
+  }
+  test {
+    eliot.eliotApplicationEnum = EliotApplicationEnum.NOT_AN_APPLICATION
+    eliot.requestHeaderPorteur = "ENT_PORTEUR"
+    eliot.not_an_application.nomApplication = "TicePlugin"
+    eliot.urlResolution.mode = UrlServeurResolutionEnum.ANNUAIRE_PORTEUR.name()
+    //eliot.urlResolution.mode = UrlServeurResolutionEnum.CONFIGURATION.name()
+    //eliot.not_an_application.urlServeur = "http//localhost:8080"
+    eliot.fichiers.racine = "/tmp"
+
+    eliot.interfacage.strongCheck = false
+    // rest client config for textes
+    eliot.webservices.rest.client.textes.user = "api"
+    eliot.webservices.rest.client.textes.password = "api"
+    eliot.webservices.rest.client.textes.urlServer = "http://localhost:8090"
+    eliot.webservices.rest.client.textes.uriPrefix = "/eliot-test-webservices/echanges/v2"
+    // rest client config for notes
+    eliot.webservices.rest.client.notes.user = "eliot-tdbase"
+    eliot.webservices.rest.client.notes.password = "eliot-tdbase"
+    eliot.webservices.rest.client.notes.urlServer = "http://localhost:8090"
+    eliot.webservices.rest.client.notes.uriPrefix = "/eliot-test-webservices/api-rest/v2"
+  }
 }

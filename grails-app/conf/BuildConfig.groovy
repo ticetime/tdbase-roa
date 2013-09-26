@@ -7,6 +7,10 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
+grails.plugin.location.'eliot-tice-plugin' = "../eliot-tdbase/eliot-tice-plugin"
+grails.plugin.location.'eliot-tdbase-plugin' = "../eliot-tdbase/eliot-tdbase-plugin"
+
+
 grails.project.fork = [
         // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
         //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
